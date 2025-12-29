@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, send_from_directory
 from google.cloud import firestore
+import json
 import os
 
 app = Flask(__name__, static_folder='.')
@@ -7,12 +8,32 @@ app = Flask(__name__, static_folder='.')
 # Initialize Firestore
 db = firestore.Client()
 
+def log_event(event_name, metadata=None):
+    """Structured logging for Cloud Run"""
+    log_entry = {
+        "event": event_name,
+        "severity": "INFO",
+        "metadata": metadata or {}
+    }
+    print(json.dumps(log_entry), flush=True)
+
 @app.route('/')
 def index():
+    log_event("page_view", {"page": "home"})
     return send_from_directory('.', 'index.html')
+
+@app.route('/track', methods=['POST'])
+def track_event():
+    event_data = request.json
+    event_name = event_data.get('event', 'unknown_click')
+    log_event(event_name, event_data.get('metadata', {}))
+    return jsonify({"status": "ok"}), 200
 
 @app.route('/<path:path>')
 def static_files(path):
+    # Track views for significant pages
+    if path == 'signup.html':
+        log_event("page_view", {"page": "signup_page"})
     return send_from_directory('.', path)
 
 @app.route('/signup', methods=['POST'])

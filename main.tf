@@ -36,8 +36,14 @@ resource "google_cloud_run_v2_service" "salo_landing_page" {
   name     = "salo-landing-page"
   location = var.region
   ingress  = "INGRESS_TRAFFIC_ALL"
+  deletion_protection = false
 
   template {
+    annotations = {
+      # Changing this value forces Cloud Run to create a new revision
+      "deploy-timestamp" = var.build_id
+      "run.googleapis.com/client-name" = "terraform"
+    }
     containers {
       image = "gcr.io/${var.project_id}/salo-landing-page:latest"
       resources {
@@ -58,6 +64,10 @@ resource "google_cloud_run_v2_service_iam_member" "public_access" {
   location = google_cloud_run_v2_service.salo_landing_page.location
   role     = "roles/run.invoker"
   member   = "allUsers"
+
+  lifecycle {
+    replace_triggered_by = [google_cloud_run_v2_service.salo_landing_page]
+  }
 }
 
 # Output the Cloud Run URL

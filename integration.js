@@ -1,41 +1,66 @@
-const SCRIPT_URL = '/signup';
+document.addEventListener('DOMContentLoaded', () => {
+    // Click Tracking
+    const trackClick = async (buttonId) => {
+        try {
+            await fetch('/track', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    event: 'cta_click',
+                    metadata: { button_id: buttonId }
+                }),
+            });
+        } catch (err) {
+            console.error('Tracking failed', err);
+        }
+    };
 
-const form = document.getElementById('signup-form');
-const status = document.getElementById('status');
+    // Attach tracking to buttons
+    const navBtn = document.getElementById('cta-nav');
+    const heroBtn = document.getElementById('cta-hero');
 
-form.addEventListener('submit', e => {
-    e.preventDefault();
-    
-    const submitBtn = form.querySelector('button');
-    submitBtn.disabled = true;
-    submitBtn.innerText = 'Sending...';
-    
-    status.style.display = 'block';
-    status.className = 'status-msg';
-    status.innerText = 'Processing your request...';
+    if (navBtn) {
+        navBtn.addEventListener('click', () => trackClick('nav_get_access'));
+    }
+    if (heroBtn) {
+        heroBtn.addEventListener('click', () => trackClick('hero_add_to_slack'));
+    }
 
-    const formData = new FormData(form);
-    
-    fetch(SCRIPT_URL, { 
-        method: 'POST', 
-        body: formData
-    })
-    .then(response => {
-        if (!response.ok) throw new Error('Network response was not ok');
-        return response.json();
-    })
-    .then(data => {
-        status.innerText = 'Success! You are on the waitlist.';
-        status.className = 'status-msg success';
-        form.reset();
-        submitBtn.innerText = 'Join Waitlist';
-        submitBtn.disabled = false;
-    })
-    .catch(error => {
-        status.innerText = 'Oops! Error connecting to server. Make sure app.py is running.';
-        status.className = 'status-msg error';
-        submitBtn.innerText = 'Join Waitlist';
-        submitBtn.disabled = false;
-        console.error('Error!', error.message);
-    });
+    // Form Handling (for signup.html)
+    const signupForm = document.getElementById('signup-form');
+    const formPanel = document.getElementById('form-panel');
+    const successPanel = document.getElementById('success-panel');
+    const loader = document.getElementById('loader');
+
+    if (signupForm) {
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Show loader
+            loader.style.display = 'block';
+            
+            const formData = new FormData(signupForm);
+            
+            try {
+                const response = await fetch('/signup', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    formPanel.style.display = 'none';
+                    successPanel.style.display = 'block';
+                } else {
+                    alert('Something went wrong. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Connection error. Please try again later.');
+            } finally {
+                loader.style.display = 'none';
+            }
+        });
+    }
 });

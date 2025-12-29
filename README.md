@@ -48,15 +48,32 @@ terraform init
 terraform apply -var="project_id=sales-edu-480702"
 ```
 
-### 4. Cleanup
+### 4. Updating the App (Forcing a Redeploy)
+To force a new deployment and ensure Cloud Run pulls the latest image, run:
+
+```bash
+terraform apply -var="project_id=sales-edu-480702" -var="build_id=$(date +%s)"
+```
+
+*This command sends a unique timestamp to Terraform, which triggers a fresh deployment of your `:latest` image every time.*
+
+### 5. Tracking and Analytics
+You can track conversions (Page Views vs. Clicks) directly in **Cloud Logging**.
+
+1. Go to **Cloud Run** > **salo-landing-page** > **Logs**.
+2. In the query box, you can filter for specific events:
+   - `jsonPayload.event = "page_view"` (Tracks home and signup page loads)
+   - `jsonPayload.event = "cta_click"` (Tracks button clicks)
+3. To see the funnel, you can create a **Log-based Metric**:
+   - Go to **Logging** > **Log-based Metrics**.
+   - Create a metric for each event to see them in a Dashboard.
+
+### 6. Cleanup
 To stop the local dev server, use `Ctrl+C`. To destroy the cloud infrastructure:
 
 ```bash
 terraform destroy -var="project_id=sales-edu-480702"
 ```
-
-## Local Hosting
-... (previous instructions)
 
 ## File Structure
 - `index.html`: Main landing page structure.

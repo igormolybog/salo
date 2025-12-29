@@ -9,3 +9,9 @@ variable "region" {
   type        = string
   default     = "us-central1"
 }
+
+variable "build_id" {
+  description = "A unique ID to force a new deployment (e.g. timestamp)"
+  type        = string
+  default     = "default"
+}

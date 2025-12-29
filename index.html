@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SalO | Intelligence for Sales Teams</title>
+    <meta name="description" content="SalO is the ultimate sales intelligence agent integrated with Slack. Deep post-mortem analytics, CRM reality checks, and precise forecasting.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons for minimalist look -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <nav>
+            <div class="logo">SalO</div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#how">How it works</a>
+                <a href="#integrations">Integrations</a>
+            </div>
+            <a href="#" class="btn-primary">Get Access</a>
+        </nav>
+    </div>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="animate">Supercharge Your CRM with <span>SalO Intelligence</span></h1>
+            <p class="animate delay-1">The Slack agent that transforms your sales data into winnable strategies. Integrated with your CRM and sales tools, built for revenue leaders.</p>
+            <div class="animate delay-2">
+                <a href="#" class="btn-primary">Add to Slack</a>
+            </div>
+            
+            <div class="hero-visual glass animate delay-3">
+                <div class="slack-mockup">
+                    <!-- Placeholder visual for Slack interaction -->
+                    <div style="padding: 2rem; text-align: left; width: 100%;">
+                        <div style="display: flex; align-items: center; margin-bottom: 2rem;">
+                            <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #4f46e5, #9333ea); border-radius: 8px; margin-right: 12px;"></div>
+                            <span style="font-weight: 800; font-size: 1.2rem;">SalO Agent</span>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #4f46e5;">
+                            <p style="margin-bottom: 1rem;"><strong>Insight:</strong> Deal #204 (Enterprise Plan - Acme Corp) has 84% probability of winning.</p>
+                            <div style="height: 20px; width: 100%; border-radius: 10px; background: rgba(255,255,255,0.1); overflow: hidden;">
+                                <div style="height: 100%; width: 84%; background: linear-gradient(to right, #4f46e5, #06b6d4);"></div>
+                            </div>
+                            <p style="margin-top: 1rem; font-size: 0.9rem; color: #94a3b8;">Primary reason: Positive sentiment in recent Gong transcript regarding pricing approval.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Intelligent Sales Diagnostics</h2>
+                <p>Three core pillars of sales intelligence, combined in one Slack agent.</p>
+            </div>
+            
+            <div class="feature-grid">
+                <div class="feature-card glass">
+                    <i data-feather="bar-chart-2"></i>
+                    <h3>Post-Mortem Analytics</h3>
+                    <p>Go beyond "Lost: Price". SalO generates deep insights into why deals were won or lost, diagnosing hidden product and marketing gaps.</p>
+                </div>
+                
+                <div class="feature-card glass">
+                    <i data-feather="check-circle"></i>
+                    <h3>CRM Reality Checker</h3>
+                    <p>Clean data is non-negotiable. SalO audits your CRM in real-time to ensure no errors, bugs, or outdated records haunt your pipeline.</p>
+                </div>
+                
+                <div class="feature-card glass">
+                    <i data-feather="trending-up"></i>
+                    <h3>Precise Forecasting</h3>
+                    <p>Probability you can bet on. SalO predicts in-flight deal success with unmatched precision, essential for CROs and investor relations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how" class="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>How SalO Works</h2>
+            </div>
+            
+            <div class="steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Integrate</h3>
+                    <p>Seamlessly connect with Salesforce, HubSpot, Gong, and Chorus. No complex setup.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Analyze</h3>
+                    <p>SalO processes all data sources to unify the narrative of every deal in your pipeline.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Secure</h3>
+                    <p>Zero data sharing. Your data stays in your org, safe, secure, and ready for action.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="integrations" class="integrations">
+        <div class="container">
+            <h3>Seamlessly Integrated With</h3>
+            <div class="integration-logos">
+                <span>SALESFORCE</span>
+                <span>HUBSPOT</span>
+                <span>GONG</span>
+                <span>CHORUS.AI</span>
+                <span>SLACK</span>
+            </div>
+        </div>
+    </section>
+
+    <footer class="container">
+        <div class="logo">SalO</div>
+        <p style="margin-top: 1rem; color: #94a3b8;">&copy; 2025 SalO Intelligence. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Init icons
+        feather.replace();
+
+        // Reveal animations on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .step-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

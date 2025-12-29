@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Access | SalO Intelligence</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .signup-container {
+            max-width: 500px;
+            margin: 100px auto;
+            padding: 3rem;
+            text-align: center;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        input {
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        
+        input:focus {
+            border-color: var(--primary);
+        }
+        
+        .status-msg {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            display: none;
+        }
+        
+        .success { color: #10b981; }
+        .error { color: #ef4444; }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+        
+        .back-link:hover {
+            color: var(--text-white);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="signup-container glass animate">
+            <a href="index.html" class="back-link"><i data-feather="arrow-left"></i> Back to Home</a>
+            
+            <h1 style="margin-bottom: 1rem;">Get Early Access</h1>
+            <p style="color: var(--text-dim);">Join the waitlist for the SalO Slack Agent and be the first to transform your sales data.</p>
+            
+            <form id="signup-form">
+                <input type="text" id="name" name="name" placeholder="Full Name" required>
+                <input type="email" id="email" name="email" placeholder="Work Email" required>
+                <button type="submit" class="btn-primary" style="border: none; cursor: pointer; width: 100%;">Join Waitlist</button>
+            </form>
+            
+            <div id="status" class="status-msg"></div>
+        </div>
+    </div>
+
+    <script src="integration.js"></script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>

@@ -2,28 +2,61 @@
 
 A premium landing page for **SalO**, the sales intelligence agent integrated with Slack.
 
-## Features
-- **Post-Mortem Analytics**: Insights into deal outcomes.
-- **CRM Reality Checker**: Ensuring data integrity in real-time.
-- **Precise Forecasting**: AI-driven win probability predictions.
-- **Slack Integrated**: Built to live where your sales team works.
+## Deployment to Google Cloud Run
 
-## How to View Locally
+This project is configured for deployment to Google Cloud Run with Firestore lead storage.
 
-To preview the landing page, you can host it using a simple local server.
+### Prerequisites
+- [Google Cloud SDK (gcloud)](https://cloud.google.com/sdk/docs/install) installed and authenticated.
+- [Terraform](https://www.terraform.io/downloads.html) installed.
+- Access to GCP Project ID: `sales-edu-480702`
 
-### Option 1: Python (Recommended)
-If you have Python installed, run the following command in the project directory:
+### 1. Configure GCP Account and Project
+Ensure you are using the correct account and project. Run:
 
 ```bash
-python3 -m http.server 8000
+gcloud auth login igormolybog@gmail.com
+gcloud config set project sales-edu-480702
+gcloud auth application-default login
 ```
 
-Then, open your browser and navigate to:
-[http://localhost:8000](http://localhost:8000)
+If you get a "quota project" warning, you can run:
+```bash
+gcloud auth application-default set-quota-project sales-edu-480702
+```
 
-### Option 2: Live Server (VS Code)
-If you are using VS Code, you can use the **Live Server** extension to launch the page with a single click.
+#### ⚠️ IAM Permissions Notice
+If you receive a `PERMISSION_DENIED` error, ensure that `igormolybog@gmail.com` has the following roles in the [GCP Console IAM page](https://console.cloud.google.com/iam-admin/iam):
+- **Cloud Build Editor** (`roles/cloudbuild.builds.editor`)
+- **Storage Admin** (`roles/storage.admin`) — *required for uploading the source code*
+- **Cloud Run Admin** (`roles/run.admin`) — *required for Terraform to deploy*
+- **Firestore Admin** (`roles/datastore.owner`) — *required for Terraform to create the database*
+- **Service Usage Consumer** (`roles/serviceusage.serviceUsageConsumer`)
+
+### 2. Build and Push Container
+Build the Docker image and push it to Google Container Registry:
+
+```bash
+gcloud builds submit --tag gcr.io/sales-edu-480702/salo-landing-page
+```
+
+### 3. Deploy Infrastructure with Terraform
+Navigate to the project root and run:
+
+```bash
+terraform init
+terraform apply -var="project_id=sales-edu-480702"
+```
+
+### 4. Cleanup
+To stop the local dev server, use `Ctrl+C`. To destroy the cloud infrastructure:
+
+```bash
+terraform destroy -var="project_id=sales-edu-480702"
+```
+
+## Local Hosting
+... (previous instructions)
 
 ## File Structure
 - `index.html`: Main landing page structure.

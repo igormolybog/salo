@@ -67,6 +67,7 @@ nav {
     font-family: var(--font-heading);
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -127,6 +128,7 @@ nav {
 .hero h1 span {
     background: linear-gradient(to right, var(--primary), var(--accent));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -211,16 +213,19 @@ nav {
     position: relative;
 }
 
-.step-number {
-    width: 40px;
-    height: 40px;
-    background: var(--primary);
-    border-radius: 50%;
+.schematic-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 1.5rem;
-    font-weight: 800;
+    filter: drop-shadow(0 0 8px var(--primary-glow));
+    transition: transform 0.3s ease;
+}
+
+.step-card:hover .schematic-icon {
+    transform: scale(1.1);
 }
 
 /* Trusted By / Integrations */

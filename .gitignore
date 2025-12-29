@@ -1,0 +1,8 @@
+.venv
+__pycache__
+*.db
+leads.db
+.terraform
+terraform.tfstate*
+.env
+.DS_Store

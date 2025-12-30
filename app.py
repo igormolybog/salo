@@ -10,10 +10,13 @@ db = firestore.Client()
 
 def log_event(event_name, metadata=None):
     """Structured logging for Cloud Run"""
+    metadata = metadata or {}
+    page_name = metadata.get('page', 'unknown')
     log_entry = {
         "event": event_name,
         "severity": "INFO",
-        "metadata": metadata or {}
+        "message": f"Analytics: {event_name} (Page: {page_name})",
+        "metadata": metadata
     }
     print(json.dumps(log_entry), flush=True)
 

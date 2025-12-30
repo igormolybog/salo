@@ -1,13 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Click Tracking
     const trackClick = async (buttonId) => {
-        // Track with Google Analytics (if ID is replaced)
-        if (typeof gtag === 'function') {
-            gtag('event', 'cta_click', {
-                'button_id': buttonId
-            });
-        }
-        
         try {
             await fetch('/track', {
                 method: 'POST',
@@ -59,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (response.ok) {
                     formPanel.style.display = 'none';
                     successPanel.style.display = 'block';
+                    if (window.feather) feather.replace();
                 } else {
                     alert('Something went wrong. Please try again.');
                 }

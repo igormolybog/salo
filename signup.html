@@ -14,15 +14,6 @@
     <script src="https://unpkg.com/feather-icons"></script>
     
     <link rel="stylesheet" href="style.css">
-    
-    <!-- Google Analytics (GA4) Placeholder - Replace G-XXXXXXXXXX with your ID -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-XXXXXXXXXX');
-    </script>
     <style>
         .signup-container {
             max-width: 500px;
@@ -85,13 +76,26 @@
             <h1 style="margin-bottom: 1rem;">Get Early Access</h1>
             <p style="color: var(--text-dim);">Join the waitlist for the SalO Slack Agent and be the first to transform your sales data.</p>
             
-            <form id="signup-form">
-                <input type="text" id="name" name="name" placeholder="Full Name" required>
-                <input type="email" id="email" name="email" placeholder="Work Email" required>
-                <button type="submit" class="btn-primary" style="border: none; cursor: pointer; width: 100%;">Join Waitlist</button>
-            </form>
+            <div id="form-panel">
+                <form id="signup-form">
+                    <input type="text" id="name" name="name" placeholder="Full Name" required>
+                    <input type="email" id="email" name="email" placeholder="Work Email" required>
+                    <button type="submit" class="btn-primary" style="border: none; cursor: pointer; width: 100%;">Join Waitlist</button>
+                </form>
+            </div>
             
-            <div id="status" class="status-msg"></div>
+            <div id="success-panel" style="display: none; padding: 2rem 0;">
+                <div style="font-size: 3rem; color: #10b981; margin-bottom: 1rem;">
+                    <i data-feather="check-circle" style="width: 64px; height: 64px;"></i>
+                </div>
+                <h2 style="margin-bottom: 1rem;">You're on the list!</h2>
+                <p style="color: var(--text-dim);">We've received your request. Stay tuned for early access instructions sent to your inbox.</p>
+            </div>
+
+            <div id="loader" style="display: none; margin-top: 2rem;">
+                <div class="loader-spinner"></div>
+                <p style="margin-top: 1rem; color: var(--text-dim); font-size: 0.9rem;">Adding you to the waitlist...</p>
+            </div>
         </div>
     </div>
 

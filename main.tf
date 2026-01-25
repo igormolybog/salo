@@ -47,11 +47,15 @@ resource "google_cloud_run_v2_service" "salo_landing_page" {
     containers {
       image = "gcr.io/${var.project_id}/salo-landing-page:latest"
       resources {
+        cpu_idle = true
         limits = {
           cpu    = "1"
           memory = "512Mi"
         }
       }
+    }
+    scaling {
+      min_instance_count = 0
     }
   }
 

@@ -9,14 +9,14 @@ app = Flask(__name__, static_folder='.')
 db = firestore.Client()
 
 def log_event(event_name, metadata=None):
-    """Structured logging for Cloud Run"""
+    """Structured logging for Cloud Run (FinAgent landing)"""
     metadata = metadata or {}
     page_name = metadata.get('page', 'unknown')
     log_entry = {
         "event": event_name,
         "severity": "INFO",
-        "message": f"Analytics: {event_name} (Page: {page_name})",
-        "metadata": metadata
+        "message": f"FinAgent analytics: {event_name} (page={page_name})",
+        "metadata": {**metadata, "product": "finagent"},
     }
     print(json.dumps(log_entry), flush=True)
 

@@ -22,10 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroBtn = document.getElementById('cta-hero');
 
     if (navBtn) {
-        navBtn.addEventListener('click', () => trackClick('nav_get_access'));
+        navBtn.addEventListener('click', () => trackClick('nav_join_waitlist'));
     }
     if (heroBtn) {
-        heroBtn.addEventListener('click', () => trackClick('hero_add_to_slack'));
+        heroBtn.addEventListener('click', () => trackClick('hero_join_waitlist'));
     }
 
     // Form Handling (for signup.html)

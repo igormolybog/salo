@@ -1,8 +1,8 @@
 :root {
-    --primary: #4f46e5;
-    --primary-glow: rgba(79, 70, 229, 0.4);
-    --secondary: #9333ea;
-    --accent: #06b6d4;
+    --primary: #059669;
+    --primary-glow: rgba(5, 150, 105, 0.35);
+    --secondary: #7c3aed;
+    --accent: #14b8a6;
     --bg-dark: #0f172a;
     --bg-card: rgba(30, 41, 59, 0.7);
     --text-white: #f8fafc;
@@ -132,6 +132,15 @@ nav {
     -webkit-text-fill-color: transparent;
 }
 
+.hero-eyebrow {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+}
+
 .hero p {
     font-size: 1.25rem;
     color: var(--text-dim);
@@ -147,11 +156,151 @@ nav {
     margin-right: auto;
 }
 
-.slack-mockup {
+.finagent-mockup {
     width: 100%;
-    height: 500px;
+    min-height: 420px;
     display: flex;
     overflow: hidden;
+}
+
+.mockup-inner {
+    padding: 1.75rem 2rem 2rem;
+    width: 100%;
+    text-align: left;
+}
+
+.mockup-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.mockup-dot {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+}
+
+.mockup-title {
+    font-weight: 800;
+    font-size: 1.15rem;
+    flex: 1;
+}
+
+.mockup-badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    background: rgba(20, 184, 166, 0.15);
+    color: var(--accent);
+    border: 1px solid rgba(20, 184, 166, 0.35);
+}
+
+.mockup-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 640px) {
+    .mockup-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.mockup-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    padding: 1.25rem;
+}
+
+.mockup-card.full-width {
+    grid-column: 1 / -1;
+}
+
+.mockup-label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+.mockup-card p {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    margin: 0 0 0.75rem;
+    line-height: 1.45;
+}
+
+.mockup-card p strong {
+    color: var(--text-white);
+}
+
+.mockup-status.done {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #34d399;
+}
+
+.mockup-approve {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    border: none;
+    cursor: default;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: white;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+
+.mockup-tier3 p {
+    margin-bottom: 0;
+}
+
+/* Problem section */
+.problem-section {
+    padding: 4rem 0 2rem;
+}
+
+.problem-list {
+    max-width: 720px;
+    margin: 0 auto;
+    padding-left: 1.25rem;
+    color: var(--text-dim);
+}
+
+.problem-list li {
+    margin-bottom: 0.75rem;
+}
+
+.integrations-sub {
+    max-width: 720px;
+    margin: 1rem auto 0;
+    color: var(--text-dim);
+    font-size: 1rem;
+    line-height: 1.65;
+}
+
+.footer-tagline {
+    margin-top: 0.75rem;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Features Section */
